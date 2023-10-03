@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const BreakingNews = () => {
   return (
     <div>
-      <button className="btn btn-warning">Breaking News</button>
+      <button className="relative btn btn-warning">Breaking News</button>
       <Marquee pauseOnHover={true} speed={70}>
         <Link className="mr-8">
           I can be a React component, multiple React components, or just some
