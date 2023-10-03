@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 const NewsCard = ({ news }) => {
-  const { title, thumbnail_url, details, _id } = news;
+  const { title, image_url, details, _id } = news;
 
   return (
     <div>
       <div className="card bg-base-100 shadow-xl mb-12">
         <figure>
-          <img className="w-full h-96" src={thumbnail_url} alt="Shoes" />
+          <img className="p-3" src={image_url} alt="Shoes" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
