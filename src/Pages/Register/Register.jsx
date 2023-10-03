@@ -1,34 +1,58 @@
-/* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 
-const Login = () => {
-  const { signIn } = useContext(AuthContext);
+/* eslint-disable react/no-unescaped-entities */
+const Register = () => {
+  const { createUser } = useContext(AuthContext);
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");
-    signIn(email, password)
+    createUser(email, password)
       .then((result) => {
-        console.log(result);
+        console.log(result.user);
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
       });
   };
 
   return (
     <div>
       <Navbar></Navbar>
-      <h2 className="text-3xl my-8 text-center text-blue-600 font-semibold">
-        Please Login
+      <h2 className="text-3xl my-8 text-center text-green-600 font-semibold">
+        Register Here
       </h2>
 
-      <form onSubmit={handleLogin} className="w-3/4 lg:w-1/2 mx-auto">
+      <form onSubmit={handleRegister} className="w-3/4 lg:w-1/2 mx-auto">
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Name</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            className="input input-bordered"
+            required
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Photo URL</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Photo URL"
+            name="PhotoUrl"
+            className="input input-bordered"
+            required
+          />
+        </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
@@ -59,17 +83,17 @@ const Login = () => {
           </label>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
+          <button className="btn btn-primary">Register</button>
         </div>
       </form>
       <p className="text-center mt-4">
-        Don't Have An Account?{" "}
-        <Link className="text-red-600" to="/register">
-          Register
+        Already Have An Account?{" "}
+        <Link className="text-blue-600" to="/login">
+          Login
         </Link>
       </p>
     </div>
   );
 };
 
-export default Login;
+export default Register;
